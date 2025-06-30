@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  mcp:
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - LOG_LEVEL=INFO
+      - CACHE_TTL=300
+      - USE_REDIS_CACHE=true
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379" 

@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Instalar dependências
+        run: |
+          python -m venv env
+          source env/bin/activate
+          pip install -r requirements.txt
+      - name: Rodar testes e gerar cobertura
+        env:
+          PYTHONPATH: src
+        run: |
+          source env/bin/activate
+          pytest --cov=src --cov-report=xml tests/ --disable-warnings -v
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage.xml 

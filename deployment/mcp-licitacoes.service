@@ -1,0 +1,12 @@
+[Unit]
+Description=MCP Licitações Governamentais
+After=network.target
+
+[Service]
+User=seu_usuario
+WorkingDirectory=/caminho/para/mcp_licitacoes
+ExecStart=/caminho/para/env/bin/python src/main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target 

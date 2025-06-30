@@ -1,0 +1,3 @@
+log_level: WARNING
+cache_ttl: 600
+use_redis_cache: true 

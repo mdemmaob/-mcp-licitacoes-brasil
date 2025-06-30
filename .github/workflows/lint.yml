@@ -1,0 +1,26 @@
+name: Lint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Instalar dependências
+        run: |
+          python -m venv env
+          source env/bin/activate
+          pip install flake8
+      - name: Rodar flake8
+        run: |
+          source env/bin/activate
+          flake8 src/ --max-line-length=120 
