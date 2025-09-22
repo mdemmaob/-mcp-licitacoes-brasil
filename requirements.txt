@@ -6,5 +6,5 @@ python-dotenv==1.0.0
 asyncio-throttle==1.0.2
 redis==5.0.1  # opcional
 pytest==7.4.0  # para testes
-black==23.0.0  # formatação
+black==25.9.0  # formatação
 flake8==6.0.0  # linting 
